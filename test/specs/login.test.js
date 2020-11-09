@@ -5,13 +5,12 @@ require('dotenv').config();
 var username = process.env.USER;
 var password = process.env.PASSWORD;
 
-describe('My Login application', () => {
-    it('should login with valid credentials', () => {
+describe('Amazon.com registration', () => {
+    it('Should navigate to Sign-in page', () => {
         LoginPage.open();
-
-        LoginPage.login(username, password);
-        expect(SecurePage.flashAlert).toBeExisting();
-        expect(SecurePage.flashAlert).toHaveTextContaining('You logged into a secure area!');
+        $('#nav-link-accountList').click();
+        const actualUrl = browser.getUrl();
+        expect(actualUrl).includes('signin');
     });
 });
 
